@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import dj_database_url
 from pathlib import Path
 import os
@@ -39,12 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'crispy_forms',
     'social_django',
-    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -173,15 +169,4 @@ AUTHENTICATION_BACKENDS = [
     "social_core.backends.github.GithubOAuth2",
 ]
 
-cloudinary.config( 
-  cloud_name = "poepleloveheroes", 
-  api_key = "931973634983264", 
-  api_secret = "DMBlwD_rOk4YhhD40bZ6fF3IObU" 
-)
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'poepleloveheroes', 
-    'API_KEY': '931973634983264', 
-    'API_SECRET': 'DMBlwD_rOk4YhhD40bZ6fF3IObU' 
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
