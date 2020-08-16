@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h5 class="display-4  text-dark text-center">Details</h5>
+          
+<div class=" container text-light">
+        <p class="text-info">{{detail.detail}}<a href="{% url 'index' %}"> Return-back</a></p>
+        <br>
+        <a href="{{ detail.github }}" class="btn btn-outline-info">Download source code from github</a>
+        
+</div>
+
+<div class="container mt-2">
+        <h5 class=" text-info">Leave your comment below</h5>
+        <p class="bg-light text-dark"><h3>{{ res }}</h3></p>
+        <form method="POST" action="{% url 'add_comments' detail.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                <input type="text" name="name" type="text" required class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                        <input type="email" name="email" type="text" required class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                        <label class="form-label text-light">Body</label>
+                       <textarea name="body" class="form-control">
+                       </textarea >
+                </div>
+                <input type="hidden" value="{{ details.id }}">
+                <input type="submit" value="Leave"  name="submit" class="btn btn-info">
+        </form>
+</div>
+
+{% endblock %}
+

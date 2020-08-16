@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<center>
+<h5 class="display-4  text-info" id="a">Comments</h5>
+<div class="container mb-2">
+<form method="post" action="{% url 'show_comments' %}">
+    {% csrf_token %}
+    <input type="hidden" value="{{ id }}" name="id">
+    <input name="form" type="submit" value="CLICK_BELOW_TO_SEE_COMMENTS" class="btn btn-outline-info">
+</form>
+</div>
+</center>
+<div class="container ">
+    <ul>
+    {% for comment in comments %}
+    <li>
+    <div class=" text-info">
+        <h2 class="text-success">{{comment.Details}}</h2>
+    <h2>{{comment.name}}</h2>
+    <p>{{comment.Comment}}</p>
+    <p class="text-info">{{comment.created_on}}</p>
+   </div>
+</li>
+
+    {% endfor %}
+  
+</ul>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container bg-light mt-4">
+<h5 class="text-info">Login to Moheed-apps-portfolio</h5>
+<form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" value="Login" class="btn btn-primary">
+    <br>
+    <p class="text-lead">Click here if you forgetpassword <a href="{% url 'password_reset' %}">Forget_password</a></p>
+    <br>
+    <p class="text-info mt-2">*******Click below to login from another account*******</p>
+    <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a>
+    <br>
+    
+
+</form>
+</div>
+    
+  
+{% endblock %}

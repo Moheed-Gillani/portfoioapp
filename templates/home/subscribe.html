@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container bg-light mt-5">
+    <h5 class="text-info mt-2 mb-2">Contact-me</h5>
+    <p class="text-info">{{ html }} </p>
+    <form method="post" action="{% url 'subscribe' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="text-info">NAME:</label>
+            <input type="text" name="name" required="required" placeholder="Enter your name" class="form-control ">
+        </div>
+        
+        <div class="form-group">
+            <label class="text-info">EMAIL:</label>
+            <input type="email" name="email" required="required" placeholder="Enter your name" class="form-control ">
+        </div>
+        <div class="form-group">
+            <label class="text-info">Subject:</label>
+            <input type="text" name="subject" required="required" placeholder="Enter your name" class="form-control ">
+        </div>
+        <div class="form-group">
+            <label class="text-info">Message:</label>
+            <textarea class="form-control" name="body">
+
+            </textarea >
+        </div>
+        <input name="form" type="submit" value="Contact" class="btn btn-info mt-1 mb-1">
+    
+
+
+
+    </form>
+</div>
+{% endblock%}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="POST"action="{%  url 'add_reviews' %}">
+  {% csrf_token %}
+  {{ form | crispy }}
+  <input type="submit" value="Leave" class="btn btn-primary">
+</form>
+{% endblock %}

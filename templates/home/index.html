@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<center>
+<h5 class="display-4  text-dark">Projects</h5>
+</center>
+{% if user.is_authenticated %}
+<center>
+<p class="bg-info text-light" style="font-size: 20px;">Welcome to my portfolio <span class="text-warning">#{{ user.username|default:'Guest'}}</span>.Thankyou for visiting me hope you will find me helpfull for your project.</p>
+</center>
+<center>
+<div class="row mt-2 mb-3 text-dark">
+
+    {% for data in context %}
+    <div class="col-xl-4 col-lg-4 col-md-4 col-12 ">
+        <div class="card" style="width: 18rem;">
+            <img src="{{data.image.url}}" class="card-img-top" alt="..." >
+            <div class="card-body">
+              <h5 class="card-title text-info">{{data.title}}</h5>
+              
+              <p class="card-text">{{data.description}}</p>
+              <h5 class="card-title">Technology: {{data.technology}}</h5>
+              <a href="{% url 'detail' data.id %}" class="btn btn-info">More info</a>
+              <a href="{{data.url}}" class="btn btn-info">Visit</a>
+
+            </div>
+          </div>
+        
+        </div>
+          {% endfor %}
+</div>
+{% if reviews %}
+
+    <h5 class="display-4  text-dark">Reviews {{ total }}</h5>
+    <p><a href="{% url 'add_reviews' %}" class="btn btn-success mt-1 mb-1  text-light">Leave a Review</a></center>
+    </p>
+  
+  
+  {% for review in reviews %}
+
+
+  <h5 class="text-success">Review {{ forloop.counter }} {{ review.name }}:</h5>
+  <p class="text-lead">{{ review.Review }}.</p>
+  <p class="text-info">Published on
+  {{ review.created_on }}</p>
+
+  {% endfor %}
+  {% else %}
+  <h5 class="display-4  text-dark">Reviews</h5>
+  <p class="text-danger">No reviews yet.</p>
+  {% endif %}
+
+{% else %}
+<div class="container bg-light mt-2">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-12">
+      <img src="{% static 'img/a.jpg' %}" class="img-fluid rounded-circle" alt="Responsive image" style="width: 350px; height:450px">
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-12">
+      <p class=" mt-4 text-info" style="font-size: 20px; font-weight:lighter;">Welcome to my portfolio {{ user.username|default:'Guest'}}.My name is Moheed-gillani and i'll be your backend python django Webapp developer.I am a software developer and working as a freelancer.My ambition is to work at #google.I  will be the best developer with less expenses for you.Thankyou for visiting me hope you will find me helpfull for your project.  To see my work please login and if you don't have an account please register here.
+        <br>
+        <span class="text-success" style="font-weight: bold;">What services you can get from me.</span>
+        <ul style="font-size: 20px;">
+          <li>django backends databases such MYSQL,Postgresql,SQLite.</li>
+          <li>Login and registrations using socail apps.</li>
+          <li>Accepting payments directly on your site using Stribe.</li>
+          <li>Power full dynamic webapp.</li>
+          <li>Deployment on heroku,pythonanywhere.com</li>
+          <li>Following officail django documentations therefore can also work on complex backends task.</li>
+        </ul>
+      </p>
+    
+   <p class="text-info">{{ success }}</p> 
+      <a href="{% url 'register' %}">Click here  to register yourself </a>
+  
+    </div>
+  </div>
+  {% if reviews %}
+
+  <h5 class="display-4  text-success">Reviews {{ total }}</h5>
+ 
+
+
+{% for review in reviews %}
+
+
+<h5 class="text-success">Review {{ forloop.counter }} {{ review.name }}:</h5>
+<p class="text-lead">{{ review.Review }}.</p>
+<p class="text-info">Published on
+{{ review.created_on }}</p>
+
+{% endfor %}
+{% else %}
+<h5 class="display-4  text-dark">Reviews</h5>
+<p class="text-danger">No reviews yet.</p>
+{% endif %}
+</div>
+{% endif %}
+
+
+{% endblock %}
+
