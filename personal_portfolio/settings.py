@@ -36,10 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'crispy_forms',
     'social_django',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +132,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -168,3 +170,15 @@ AUTHENTICATION_BACKENDS = [
     "social_core.backends.github.GithubOAuth2",
 ]
 
+cloudinary.config( 
+  cloud_name = "poepleloveheroes", 
+  api_key = "931973634983264", 
+  api_secret = "DMBlwD_rOk4YhhD40bZ6fF3IObU" 
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'poepleloveheroes', 
+    'API_KEY': '931973634983264', 
+    'API_SECRET': 'DMBlwD_rOk4YhhD40bZ6fF3IObU' 
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
