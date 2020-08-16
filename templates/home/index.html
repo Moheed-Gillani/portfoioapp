@@ -30,10 +30,11 @@
         </div>
           {% endfor %}
 </div>
+<p><a href="{% url 'add_reviews' %}" class="btn btn-success mt-1 mb-1  text-light">Leave a Review</a></center>
 {% if reviews %}
 
     <h5 class="display-4  text-dark">Reviews {{ total }}</h5>
-    <p><a href="{% url 'add_reviews' %}" class="btn btn-success mt-1 mb-1  text-light">Leave a Review</a></center>
+   
     </p>
   
   
